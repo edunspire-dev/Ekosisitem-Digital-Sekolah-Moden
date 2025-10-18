@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ekosistem Digital Sekolah Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue: #007bff;
+    --red: #ff4757;
+    --green: #2ed573;
+    --purple: #9c27b0;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #f9fafb;
+    color: #222;
+    scroll-behavior: smooth;
+  }
+  header {
+    background: linear-gradient(135deg, var(--blue), #00c4ff);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  header h1 {
+    font-size: 2.8em;
+    margin: 0;
+    font-weight: 700;
+  }
+  header p {
+    font-size: 1.2em;
+    margin-top: 12px;
+  }
+  .btn {
+    display: inline-block;
+    margin: 15px 8px;
+    padding: 12px 24px;
+    background: white;
+    color: var(--blue);
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: #222;
+    color: white;
+  }
+
+  section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: auto;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+  .card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+  }
+  .card h3 {
+    margin-top: 0;
+  }
+  .blue {
+    border-top: 5px solid var(--blue);
+  }
+  .red {
+    border-top: 5px solid var(--red);
+  }
+  .green {
+    border-top: 5px solid var(--green);
+  }
+  .purple {
+    border-top: 5px solid var(--purple);
+  }
+
+  iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+    border-radius: 16px;
+    margin-top: 20px;
+  }
+
+  footer {
+    background: #0a0a0a;
+    color: #ccc;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2em;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      width: 70%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ekosistem Digital Sekolah Modern</h1>
+  <p>Empat Nilai, Satu Kompas Digital untuk Masa Depan Pendidikan</p>
+  <a href="#dashboard" class="btn">📊 Lihat Dashboard</a>
+  <a href="#sop" class="btn">📘 Baca SOP Digital</a>
+  <a href="#portal" class="btn">🧭 Jelajahi Portal</a>
+</header>
+
+<section id="manifesto">
+  <div class="section-title">
+    <h2>Manifesto Operasional Sekolah Digital</h2>
+    <p>Sistem ini bukan sekadar tools — ini adalah <strong>Operating System</strong> sekolah modern yang menghubungkan data, aksi, dan keputusan.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card blue">
+      <h3>⚙️ Efisiensi</h3>
+      <p>Gunakan Formulir Terpadu untuk absensi, log BK, dan laporan guru. Data otomatis masuk ke Sheets dan Looker Studio.</p>
+      <p><strong>Integrasi:</strong> Formulir Harian & Dashboard Absensi</p>
+      <p><strong>Tampilkan:</strong> Grafik “Data Sekali Input → Banyak Output”</p>
+    </div>
+
+    <div class="card red">
+      <h3>🔒 Keamanan</h3>
+      <p>Login wajib dengan akun <strong>@belajar.id</strong>, aktifkan 2FA, dan gunakan Vault untuk audit.</p>
+      <p><strong>Integrasi:</strong> Panduan Keamanan Digital & SOP Akses Data</p>
+      <p><strong>Tampilkan:</strong> Log Aktivitas Pengguna di Dashboard Admin</p>
+    </div>
+
+    <div class="card green">
+      <h3>🌐 Akses</h3>
+      <p>Gunakan Google Sites sebagai SSO ke semua layanan. Portal Sekolah jadi beranda default di semua perangkat.</p>
+      <p><strong>Integrasi:</strong> Portal Sekolah</p>
+      <p><strong>Tampilkan:</strong> Shortcut ke Dashboard Utama</p>
+    </div>
+
+    <div class="card purple">
+      <h3>🤖 Masa Depan</h3>
+      <p>Gunakan Looker Studio untuk analitik tren kehadiran, nilai, dan perilaku siswa.</p>
+      <p><strong>Integrasi:</strong> Dashboard Prediksi Risiko & Rekomendasi Intervensi</p>
+      <p><strong>Tampilkan:</strong> Ringkasan Insight Mingguan</p>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <div class="section-title">
+    <h2>📊 Dashboard Analitik Sekolah</h2>
+    <p>Data real-time dari formulir dan Sheets yang diolah di Looker Studio.</p>
+  </div>
+  <!-- Ganti src di bawah ini dengan link embed Looker Studio milikmu -->
+  <iframe src="https://lookerstudio.google.com/embed/reporting/your-dashboard-id-here/page/1"></iframe>
+</section>
+
+<section id="kompas">
+  <div class="section-title">
+    <h2>🧭 Kompas Digital Sekolah</h2>
+    <p>Setiap guru tahu apa yang harus dilakukan dan mengapa.<br>
+    Setiap kebijakan baru bisa diuji: apakah selaras dengan 4 nilai ini?<br>
+    Setiap inovasi digital tidak berdiri sendiri, tapi terhubung dalam ekosistem.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Ekosistem Digital Sekolah Modern — Powered by Google Workspace for Education</p>
+</footer>
+
+</body>
+</html>
 
