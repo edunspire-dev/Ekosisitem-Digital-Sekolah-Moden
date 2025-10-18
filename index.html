@@ -1,200 +1,436 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ekosistem Digital Sekolah Modern | SMAN 1 Pasangkayu</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f8fc;
-      color: #1a1a1a;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekosistem Digital Sekolah Modern</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* === GLOBAL STYLES === */
+        body {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #f8f9fb;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            color: #202124;
+            font-weight: 700;
+        }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .button-group a {
+            display: inline-block;
+            margin: 6px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { 
+            background: #1f77b4; 
+            color: #fff; 
+        }
+        .btn-primary:hover {
+            background: #1565a0;
+            transform: translateY(-2px);
+        }
+        .btn-outline { 
+            background: #e9eef8; 
+            color: #1f1f1f; 
+        }
+        .btn-outline:hover {
+            background: #d1dae8;
+            transform: translateY(-2px);
+        }
+        .btn-green { 
+            background: #e6f6ea; 
+            color: #0b6630; 
+        }
+        .btn-green:hover {
+            background: #d4f0dc;
+            transform: translateY(-2px);
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #f7f9fc;
+            padding: 18px;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+        .card:hover { transform: translateY(-4px); }
+        .card h3 { margin: 0; font-size: 18px; }
+        .card p { font-size: 14px; color: #444; margin-top: 6px; }
 
-    header {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-    }
+        /* === TABLE === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+        th {
+            background: #eef2f6;
+            color: #333;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
 
-    header img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
+        /* === QUOTE === */
+        .quote {
+            background: #f3f7ff;
+            border-left: 5px solid #1f77b4;
+            padding: 16px 20px;
+            font-style: italic;
+            margin: 30px 0;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: 700;
-    }
+        /* === INTERACTIVE ELEMENTS === */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status-complete {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        .status-progress {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        .status-pending {
+            background: #ffebee;
+            color: #c62828;
+        }
 
-    header h3 {
-      margin-top: 8px;
-      font-weight: 400;
-      font-size: 18px;
-      color: #d0e3ff;
-    }
+        /* === MODAL === */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        .close:hover {
+            color: #000;
+        }
 
-    .button-group {
-      margin-top: 25px;
-    }
-
-    .button-group a {
-      display: inline-block;
-      margin: 8px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #fff;
-      background: #2196f3;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-
-    .button-group a:hover {
-      background: #1976d2;
-      transform: translateY(-2px);
-    }
-
-    section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 25px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      color: #0d47a1;
-      border-left: 5px solid #1976d2;
-      padding-left: 10px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: #f0f5ff;
-      border-radius: 12px;
-      padding: 16px;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .card h3 {
-      color: #0d47a1;
-      margin: 0;
-      font-size: 18px;
-    }
-
-    .card p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #333;
-    }
-
-    footer {
-      text-align: center;
-      background: #0d47a1;
-      color: #fff;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 30px 15px;
-      }
-      header h1 {
-        font-size: 22px;
-      }
-      header h3 {
-        font-size: 16px;
-      }
-    }
-  </style>
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            section {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+            .button-group {
+                text-align: center;
+            }
+            .button-group a {
+                display: block;
+                margin: 8px 0;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- === HERO SECTION === -->
+    <section>
+        <h1>Ekosistem Digital Sekolah Modern</h1>
+        <p class="subtitle">Satu Data, Satu Arah, Satu Aksi</p>
 
-  <header>
-    <img src="SMAN1_Logo.jpeg" alt="Logo SMAN 1 Pasangkayu">
-    <h1>Ekosistem Digital Sekolah Modern</h1>
-    <h3>Satu Data, Satu Arah, Satu Aksi</h3>
-    <div class="button-group">
-      <a href="https://lookerstudio.google.com/embed/reporting/placeholder">📊 Dashboard</a>
-      <a href="https://sites.google.com/view/portal-placeholder">🧭 Portal Sekolah</a>
-      <a href="https://docs.google.com/document/d/placeholder">📘 SOP Digital</a>
+        <p>
+            <strong>Empat Nilai, Satu Kompas Digital untuk Masa Depan Pendidikan.</strong>  
+            Ekosistem Digital Sekolah Modern berfungsi sebagai fondasi operasional yang menghubungkan data, aksi, dan keputusan — menjadikan sekolah bukan sekadar tempat belajar, tetapi organisasi pembelajar berbasis data.
+        </p>
+
+        <div class="button-group" style="text-align:center;">
+            <a href="#" class="btn-primary" onclick="openModal('dashboardModal')">📊 Lihat Dashboard</a>
+            <a href="#" class="btn-outline" onclick="openModal('sopModal')">📘 Baca SOP Digital</a>
+            <a href="#" class="btn-green" onclick="openModal('portalModal')">🧭 Jelajahi Portal</a>
+        </div>
+
+        <div class="cards">
+            <div class="card" style="background:#e8f2ff;">
+                <h3>⚙️ Efisiensi</h3>
+                <p>Satu input data → multi-output. (Absensi → Analitik → Intervensi)</p>
+            </div>
+            <div class="card" style="background:#ffecec;">
+                <h3>🔒 Keamanan</h3>
+                <p>Zero Trust Model: setiap aksi diverifikasi, setiap data terlindungi.</p>
+            </div>
+            <div class="card" style="background:#ecfff0;">
+                <h3>🌐 Akses</h3>
+                <p>Satu portal, semua layanan. Hilangkan shortcut manual dan duplikasi.</p>
+            </div>
+            <div class="card" style="background:#f4ecff;">
+                <h3>🤖 Masa Depan</h3>
+                <p>AI dan Analitik Prediktif untuk intervensi belajar proaktif.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === PROGRESS TRACKER === -->
+    <section>
+        <h2>📈 Progress Implementasi Digital</h2>
+        <div style="margin: 20px 0;">
+            <h3>Efisiensi Operasional</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%"></div>
+            </div>
+            <span>85% Complete</span>
+            
+            <h3>Keamanan Data</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+            </div>
+            <span>70% Complete</span>
+            
+            <h3>Akses Terpadu</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 90%"></div>
+            </div>
+            <span>90% Complete</span>
+            
+            <h3>Teknologi Masa Depan</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 45%"></div>
+            </div>
+            <span>45% Complete</span>
+        </div>
+    </section>
+
+    <!-- === CHECKLIST IMPLEMENTASI === -->
+    <section>
+        <h2>✅ Checklist Implementasi Manifesto Operasional Sekolah Digital</h2>
+        <table>
+            <tr>
+                <th>Pilar Nilai</th>
+                <th>Implementasi Teknis</th>
+                <th>Integrasi di Portal</th>
+                <th>Integrasi di Dashboard</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>⚙️ Efisiensi</td>
+                <td>Gunakan Formulir Terpadu untuk absensi, log BK, dan laporan guru. Data otomatis masuk ke Sheets dan Looker Studio.</td>
+                <td>Tautkan ke Formulir Harian dan Dashboard Absensi.</td>
+                <td>Tampilkan grafik "Data Sekali Input → Banyak Output".</td>
+                <td><span class="status-badge status-complete">Selesai</span></td>
+            </tr>
+            <tr>
+                <td>🔒 Keamanan</td>
+                <td>Wajib login dengan akun @belajar.id, aktifkan 2FA, dan gunakan Vault untuk audit.</td>
+                <td>Tampilkan Panduan Keamanan Digital dan SOP Akses Data.</td>
+                <td>Tambahkan log aktivitas pengguna di dashboard admin.</td>
+                <td><span class="status-badge status-progress">Proses</span></td>
+            </tr>
+            <tr>
+                <td>🌐 Akses</td>
+                <td>Portal tunggal dengan SSO Google Workspace, integrasi semua aplikasi sekolah.</td>
+                <td>Beranda dengan widget dinamis sesuai peran pengguna.</td>
+                <td>Monitor penggunaan aplikasi dan feedback pengguna.</td>
+                <td><span class="status-badge status-complete">Selesai</span></td>
+            </tr>
+            <tr>
+                <td>🤖 Masa Depan</td>
+                <td>Implementasi AI untuk prediksi risiko siswa dan rekomendasi intervensi.</td>
+                <td>Chatbot bantuan dan notifikasi cerdas.</td>
+                <td>Dashboard prediktif dengan machine learning insights.</td>
+                <td><span class="status-badge status-pending">Rencana</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- === QUOTE SECTION === -->
+    <section>
+        <div class="quote">
+            "Transformasi digital bukan tentang teknologi, tetapi tentang mengubah cara kita bekerja, berpikir, dan melayani siswa dengan lebih baik."
+            <br><strong>— Tim Pengembang Ekosistem Digital</strong>
+        </div>
+    </section>
+
+    <!-- === MODALS === -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dashboardModal')">&times;</span>
+            <h2>📊 Dashboard Analytics</h2>
+            <p>Dashboard terpadu menampilkan:</p>
+            <ul>
+                <li>📈 Tingkat kehadiran siswa real-time</li>
+                <li>📚 Progress pembelajaran per mata pelajaran</li>
+                <li>🎯 Indikator kinerja sekolah (KPI)</li>
+                <li>⚠️ Alert sistem untuk intervensi dini</li>
+                <li>📊 Analitik prediktif berbasis AI</li>
+            </ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" class="btn-primary">Buka Dashboard</a>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <section>
-    <h2>Manifesto Ekosistem Digital Sekolah Modern</h2>
-    <p>
-      Ekosistem Digital Sekolah Modern berlandaskan pada empat pilar nilai:
-    </p>
-    <ul>
-      <li><b>⚙️ Nilai Efisiensi:</b> Multi-manfaat dari <b>Satu Input Data</b> — menuju interoperabilitas.</li>
-      <li><b>🔒 Nilai Keamanan:</b> Akuntabilitas penuh dengan model <b>Zero Trust Security</b>.</li>
-      <li><b>🌐 Nilai Akses:</b> Satu pintu layanan <b>(One Stop Service)</b> bagi seluruh warga sekolah.</li>
-      <li><b>🤖 Nilai Masa Depan:</b> Sekolah siap untuk era <b>AI & Analitik Prediktif</b>.</li>
-    </ul>
-
-    <p><i>“Sistem ini bukan sekadar tools — ini adalah Operating System bagi sekolah modern.”</i></p>
-  </section>
-
-  <section>
-    <h2>Empat Pilar Nilai</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>⚙️ Efisiensi</h3>
-        <p>Satu input data → multi-output (Absensi → Analitik → Intervensi).</p>
-      </div>
-      <div class="card">
-        <h3>🔒 Keamanan</h3>
-        <p>Zero Trust Model: setiap aksi diverifikasi, setiap data terlindungi.</p>
-      </div>
-      <div class="card">
-        <h3>🌐 Akses</h3>
-        <p>Satu portal, semua layanan. Hilangkan shortcut manual dan duplikasi.</p>
-      </div>
-      <div class="card">
-        <h3>🤖 Masa Depan</h3>
-        <p>AI dan Analitik Prediktif untuk intervensi belajar proaktif.</p>
-      </div>
+    <div id="sopModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('sopModal')">&times;</span>
+            <h2>📘 SOP Digital Sekolah</h2>
+            <p>Standar Operasional Prosedur mencakup:</p>
+            <ul>
+                <li>🔐 Protokol keamanan data dan akses sistem</li>
+                <li>📝 Prosedur input data harian</li>
+                <li>🔄 Workflow persetujuan dan eskalasi</li>
+                <li>📱 Panduan penggunaan aplikasi mobile</li>
+                <li>🆘 Prosedur darurat dan backup data</li>
+            </ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" class="btn-outline">Download SOP</a>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section>
-    <h2>📊 Dashboard Analitik Sekolah</h2>
-    <p>Visualisasi real-time dari data absensi, kinerja guru, dan intervensi belajar.</p>
-    <iframe src="https://lookerstudio.google.com/embed/reporting/placeholder"></iframe>
-  </section>
+    <div id="portalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('portalModal')">&times;</span>
+            <h2>🧭 Portal Sekolah Digital</h2>
+            <p>Akses terpadu ke semua layanan:</p>
+            <ul>
+                <li>👥 Manajemen siswa dan guru</li>
+                <li>📅 Sistem penjadwalan otomatis</li>
+                <li>💬 Komunikasi orang tua-sekolah</li>
+                <li>📋 E-learning dan tugas digital</li>
+                <li>💰 Sistem pembayaran terintegrasi</li>
+            </ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" class="btn-green">Masuk Portal</a>
+            </div>
+        </div>
+    </div>
 
-  <footer>
-    © 2025 SMAN 1 Pasangkayu | Ekosistem Digital Sekolah Modern — powered by Looker Studio & Google Workspace for Education
-  </footer>
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
 
-</body>
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Animate progress bars on page load
+        window.addEventListener('load', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
+        // Add click handlers for table rows
+        document.querySelectorAll('table tr').forEach(row => {
+            if (row.querySelector('th')) return; // Skip header row
+            
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', function() {
+                const statusBadge = this.querySelector('.status-badge');
+                if (statusBadge) {
+                    if (statusBadge.classList.contains('status-pending')) {
+                        statusBadge.textContent = 'Dimulai';
+                        statusBadge.className = 'status-badge status-progress';
+                    } else if (statusBadge.classList.contains('status-progress')) {
+                        statusBadge.textContent = 'Selesai';
+                        statusBadge.className = 'status-badge status-complete';
+                    }
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9903caf8b38e410c',t:'MTc2MDc0NjAxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
